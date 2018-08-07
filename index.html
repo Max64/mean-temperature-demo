@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
     <style>
-        html, body, .row, .column, #map {
+        html, body, .app-block, .column, #map {
             width: 100%; height: 100%; padding: 0; margin: 0;
         }
 
-        .row {
+        .app-block {
             display: flex;
             flex-direction: row;
         }
@@ -23,8 +25,25 @@
             flex: 50%;
         }
 
+        .temp-chart-block__select {
+            font-size: 1em;
+        }
+
+        .loading-modal {
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )
+            url('http://sampsonresume.com/labs/pIkfp.gif')
+            50% 50%
+            no-repeat;
+        }
+
         @media (max-width: 900px) {
-            .row {
+            .app-block {
                 flex-direction: column;
             }
 
@@ -39,15 +58,22 @@
     </style>
 </head>
 <body>
-    <div class="row">
-        <div class="column"></div>
+
+    <div id="app" class="app-block">
+        <div class="column">
+            <temp-chart :map-point="mapPoint" :current-year="currentYear" :year-count="yearCount"></temp-chart>
+        </div>
 
         <div class="column">
-            <div id="map"></div>
+            <ya-map :map-point="mapPoint" @map-click="mapClicked"></ya-map>
         </div>
     </div>
 
+    <script src="js/mapsApi.js" type="text/javascript"></script>
+    <script src="js/model.js" type="text/javascript"></script>
+    <script src="js/components/ya-map.js" type="text/javascript"></script>
+    <script src="js/components/temp-chart.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
-    <script src="js/graph.js" type="text/javascript"></script>
+
 </body>
 </html>
