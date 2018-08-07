@@ -24,7 +24,7 @@ mapsApi = function () {
     }
 
     function getGmxIdByCoords(lat, long) {
-        return axios.get('http://maps.kosmosnimki.ru/rest/ver1/layers/35FB2C338FED4B64B7A326FBFE54BE73/search', {
+        return axios.get('https://maps.kosmosnimki.ru/rest/ver1/layers/35FB2C338FED4B64B7A326FBFE54BE73/search', {
             params: {
                 query: '"lat"=' + lat + 'and"lon"=' + long,
                 apikey: '6Q81IXBUQ7',
@@ -58,7 +58,7 @@ mapsApi = function () {
 
     function getFeaturesByGmxIdAndYear(gmx_id, year) {
         return new Promise((resolve, reject) => {
-            axios.get('http://maps.kosmosnimki.ru/rest/ver1/layers/11A381497B4A4AE4A4ED6580E1674B72/search', {
+            axios.get('https://maps.kosmosnimki.ru/rest/ver1/layers/11A381497B4A4AE4A4ED6580E1674B72/search', {
                 params: {
                     query: 'year("date")=' + year + ' and "gridpoint_id"=' + gmx_id,
                     apikey: '6Q81IXBUQ7'
